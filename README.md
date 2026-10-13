@@ -114,7 +114,7 @@ The script filters energized terminals with nominal voltages up to 6 kV and excl
 
 Clone the repository and navigate to the project directory:
 
-git clone https://github.com/sokolovic-z/Thermal-Power-Plant-Load-Expansion-Assessment.git
+git clone https://github.com/sokolovic-z/Thermal-Power-Plant-Load-Expansion-Assessment.git 
 cd Thermal-Power-Plant-Load-Expansion-Assessment
 
 ## Running the Study
