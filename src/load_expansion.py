@@ -149,19 +149,18 @@ def main(app):
     # Results DataFrame
     res_df = pd.DataFrame(columns=['Bus', 'Smax', 'Pmax', 'cosphi', 'Critical element', 'Value'])
 
-    
     # Increment active power of loads until violation is detected
     for load in loads:
         print(f'[*] {load.loc_name} ...')
         
-        # extract terminal info
+        # Extract terminal info
         cub = load.bus1 # returns cubicle object (e.g. "new_cub")
         bus = cub.cterm # returns bus object e.g."1GA-L4 JN" or "1GA-L13 NN" or "1GA"
 
-        # set active power P
+        # Set active power P
         load.mode_inp = 'PC' # input mode (P, cosφ)
         load.SetAttribute('plini', 0)  # set initial active power to 0
-        # set constant power factor cosφ equal to average power factor of the all ASM connected to the same substation/bus
+        # Set constant power factor cosφ equal to average power factor of the all ASM connected to the same substation/bus
         # if there are no ASM, set it to 1
         cosphi = np.mean(
             [am.GetAttribute('t:cosn') for am in asm 
@@ -195,7 +194,8 @@ def main(app):
 
     # Export results
     res_df.sort_values(by='Bus', inplace=True)
-    res_df.to_excel(OUTPUT_PATH / 'results.xlsx', engine='openpyxl')
+    res_df = res_df.round(3)
+    res_df.to_excel(OUTPUT_PATH / 'results.xlsx', index=False, engine='openpyxl')
 
     # Clean up network variation
     netvar.Deactivate()
