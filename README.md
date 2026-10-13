@@ -1,30 +1,17 @@
-# Load Expansion Study in DIgSILENT PowerFactory
-
-**Automated Load Expansion Analysis Using Python**
+# Load Expansion Assessment of a Thermal Power Plant Auxiliary Electrical System Using DIgSILENT PowerFactory and Python
 
 ## Overview
 
-This project implements a Python-based workflow for conducting load expansion studies in **DIgSILENT PowerFactory**. The script automates the process of adding new loads to medium-voltage and low-voltage network buses, progressively increasing their active power, performing load flodw calculations, and identifying network operating limit violations.
+This project implements a Python-based workflow for conducting load expansion studies in **DIgSILENT PowerFactory**. The script automates the process of adding new loads to medium-voltage and low-voltage network buses, progressively increasing their active power, performing load flow calculations, and identifying network operating limit violations.
 
 The objective is to determine the maximum additional active load that can be connected at selected network nodes while respecting voltage limits and equipment loading constraints.
 
-## Features
-
-* **PowerFactory integration:** Automates network simulations using the PowerFactory Python API.
-* **Project and study case activation:** Imports a PowerFactory project and activates a study case and operation scenario.
-* **Network variation management:** Creates a network variation and expansion stage for the study.
-* **Automatic load creation:** Adds new load elements to selected network buses.
-* **Incremental load increase:** Progressively increases active power in configurable steps.
-* **Load flow analysis:** Executes load flow calculations after each load increment.
-* **Violation detection:** Checks bus voltages and the loading of lines, transformers, and series reactors.
-* **Power factor assignment:** Estimates the load power factor using connected asynchronous motors, with a fallback value when no motors are identified.
-* **Excel export:** Saves the detected operating limits and associated network violations to an Excel file.
 
 ## Methodology
 
 The analysis follows an incremental load expansion approach:
 
-1. Initialize the PowerFactory application and import the network project.
+1. Initialize the PowerFactory application and import project.
 2. Activate the relevant study case and operation scenario.
 3. Create a network variation and expansion stage.
 4. Retrieve network elements required for the analysis.
@@ -47,10 +34,10 @@ The analysis follows an incremental load expansion approach:
 | Initial active power   | 0 MW                                          |
 | Active power increment | 0.1 MW                                        |
 | Power factor           | Estimated from associated asynchronous motors |
-| Voltage monitoring     | Bus voltage magnitude                         |
-| Line monitoring        | Line loading                                  |
-| Transformer monitoring | Calculated transformer loading                |
-| Reactor monitoring     | Reactor loading                               |
+| Voltage monitoring     | Bus voltage magnitude in p.u.                 |
+| Line monitoring        | Line loading (current)                        |
+| Transformer monitoring | Transformer loading (apparent power)          |
+| Reactor monitoring     | Reactor loading (current)                     |
 | Results format         | Excel (`.xlsx`)                               |
 
 The active power increment can be adjusted to obtain a finer or coarser estimate of the maximum load.
@@ -58,22 +45,20 @@ The active power increment can be adjusted to obtain a finer or coarser estimate
 ## Project Structure
 
 ```text
-Load-Expansion-Study/
-├── project/
-│   └── thermal_power_plant.pfd
-├── output/
-│   └── results.xlsx
+Thermal-Power-Plant-Load-Expansion-Assessment/
+├── doc/
+│   ├── workflow.png
+│   └── sld.pdf
 ├── src/
 │   └── load_expansion.py
+├── .gitignore
 ├── requirements.txt
 └── README.md
 ```
 
-*The structure above is illustrative; adapt the filenames and directories to match the actual repository.*
-
 ## Requirements
 
-* DIgSILENT PowerFactory 2024 SP2
+* DIgSILENT PowerFactory 2024 or later
 * A compatible Python version supported by the installed PowerFactory release
 * Access to the PowerFactory Python API
 * Python packages:
@@ -124,12 +109,20 @@ Adjust this value according to the desired resolution of the study.
 
 The script filters energized terminals with nominal voltages up to 6 kV and excludes selected elements whose names contain `SKO`. Modify these conditions to match the network under investigation.
 
+
+## Cloning the Repository
+
+Clone the repository and navigate to the project directory:
+
+git clone https://github.com/sokolovic-z/Thermal-Power-Plant-Load-Expansion-Assessment.git
+cd Thermal-Power-Plant-Load-Expansion-Assessment
+
 ## Running the Study
 
 1. Install the required Python packages:
 
    ```bash
-   pip install pandas numpy openpyxl
+   pip install -r requirements.txt
    ```
 
 2. Ensure that DIgSILENT PowerFactory is installed and its Python API is accessible.
@@ -165,29 +158,6 @@ The spreadsheet contains the following columns:
 | `Critical element` | Network element associated with the detected violation |
 | `Value`            | Voltage or loading value recorded for that element     |
 
-**Important:** The recorded power corresponds to the first simulated increment at which the script detects a violation. It should not automatically be interpreted as the exact maximum permissible load. A refined search and validation of the preceding feasible operating point may be required.
-
-## Limitations and Further Development
-
-Potential improvements include:
-
-* Implementing a binary search or adaptive load increment to estimate the maximum permissible load more accurately.
-* Adding explicit convergence checks and handling unsuccessful load flow calculations.
-* Distinguishing voltage violations from equipment overloads in the output.
-* Refining the association between asynchronous motors and the buses or substations being analyzed.
-* Validating transformer loading calculations against the relevant PowerFactory attributes and transformer ratings.
-* Recording the last feasible load and the first infeasible load separately.
-* Adding configurable voltage limits, equipment loading limits, and load power factors.
-* Improving cleanup and restoration of the original network state after the simulation.
-
-## Technologies
-
-* Python
-* DIgSILENT PowerFactory
-* PowerFactory Python API
-* NumPy
-* pandas
-* Excel / openpyxl
 
 ## Author
 
@@ -195,6 +165,4 @@ Potential improvements include:
 
 GitHub: [@sokolovic-z](https://github.com/sokolovic-z)
 
-## License
 
-Specify a license before redistributing this project. If the repository contains proprietary PowerFactory project files or other restricted network data, ensure that you have permission to publish them.
