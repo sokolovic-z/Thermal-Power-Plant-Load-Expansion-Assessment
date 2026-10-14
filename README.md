@@ -100,7 +100,7 @@ PROJECT_FILEPATH = (
 The active power increment is configured as:
 
 ```python
-deltaP = 0.1  # MW
+deltaP = 0.1  # increment step [MW]
 ```
 
 Adjust this value according to the desired resolution of the study.
