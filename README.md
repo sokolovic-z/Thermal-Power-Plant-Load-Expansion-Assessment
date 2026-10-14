@@ -107,7 +107,7 @@ Adjust this value according to the desired resolution of the study.
 
 ### 4. Network selection
 
-The script filters energized terminals with nominal voltages up to 6 kV and excludes selected elements whose names contain `SKO`. Modify these conditions to match the network under investigation.
+The script filters energized terminals with nominal voltages up to 6 kV and excludes selected critical elements. Modify these conditions to match the network under investigation.
 
 ## Running the Study
 
