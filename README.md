@@ -113,10 +113,10 @@ The script filters energized terminals with nominal voltages up to 6 kV and excl
 
  1. Clone the repository and navigate to the project directory:
 
-```bash
-git clone https://github.com/sokolovic-z/Thermal-Power-Plant-Load-Expansion-Assessment.git 
-cd Thermal-Power-Plant-Load-Expansion-Assessment
-```
+    ```bash
+    git clone https://github.com/sokolovic-z/Thermal-Power-Plant-Load-Expansion-Assessment.git 
+    cd Thermal-Power-Plant-Load-Expansion-Assessment
+    ```
 
 2. Install the required Python packages:
 
