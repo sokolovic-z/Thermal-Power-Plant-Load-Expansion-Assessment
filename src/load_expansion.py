@@ -157,21 +157,22 @@ def main(app):
         cub = load.bus1 # returns cubicle object (e.g. "new_cub")
         bus = cub.cterm # returns bus object e.g."1GA-L4 JN" or "1GA-L13 NN" or "1GA"
 
-        # Set active power P
-        load.mode_inp = 'PC' # input mode (P, cosφ)
-        load.SetAttribute('plini', 0)  # set initial active power to 0
-        # Set constant power factor cosφ equal to average power factor of the all ASM connected to the same substation/bus
-        # if there are no ASM, set it to 1
+        # Set active power P and power factor cosφ
+        load.mode_inp = 'PC' # set input model: (P, cosφ)
+        load.SetAttribute('plini', 0)  # initial active power to 0
+        # compute power factor cosφ equal to average power factor of the all ASM connected to the same substation/bus
         cosphi = np.mean(
             [am.GetAttribute('t:cosn') for am in asm 
             if bus.loc_name in am.bus1.cterm.loc_name]
-        ) 
+        )
+        # fallback: set cosφ = 1 if no ASM are found 
         if np.isnan(cosphi): cosphi = 1
         load.SetAttribute('coslini', cosphi)
         
-        deltaP = 0.1  # MW
+        deltaP = 0.1  # increment step [MW]
         while True:
-            p = load.plini + deltaP # increment active power by deltaP
+            # increase active power by deltaP
+            p = load.plini + deltaP 
             load.SetAttribute('plini', p)
             
             # Run load flow calculation
@@ -223,7 +224,7 @@ if __name__ == "__main__":
     # Run main workflow
     main(app)
 
-    # Prints final msg and terminate script
+    # Print final msg and terminate script
     print('[+] Load expansion study completed successfully.')
     print(f'[+] Results exported to: {OUTPUT_PATH / "results.xlsx"}')
     sys.exit(0)
