@@ -109,31 +109,28 @@ Adjust this value according to the desired resolution of the study.
 
 The script filters energized terminals with nominal voltages up to 6 kV and excludes selected elements whose names contain `SKO`. Modify these conditions to match the network under investigation.
 
+## Running the Study
 
-## Cloning the Repository
-
-Clone the repository and navigate to the project directory:
+1.Clone the repository and navigate to the project directory:
 
 ```bash
 git clone https://github.com/sokolovic-z/Thermal-Power-Plant-Load-Expansion-Assessment.git 
 cd Thermal-Power-Plant-Load-Expansion-Assessment
 ```
 
-## Running the Study
-
-1. Install the required Python packages:
+2. Install the required Python packages:
 
    ```bash
    pip install -r requirements.txt
    ```
 
-2. Ensure that DIgSILENT PowerFactory is installed and its Python API is accessible.
+3. Ensure that DIgSILENT PowerFactory is installed and its Python API is accessible.
 
-3. Configure the PowerFactory API path and project file path.
+4. Configure the PowerFactory API path and project file path.
 
-4. Verify that the project contains the required study case, operation scenario, and network model.
+5. Verify that the project contains the required study case, operation scenario, and network model.
 
-5. Run the script using a compatible Python interpreter:
+6. Run the script using a compatible Python interpreter:
 
    ```bash
    python src/load_expansion.py
