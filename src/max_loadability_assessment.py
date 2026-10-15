@@ -1,7 +1,9 @@
 """
-Load Expansion Script for DIgSILENT PowerFactory
+This script automates the assessment of maximum additional load
+that can be connected to selected buses in a thermal power plant's
+auxiliary electrical system using DIgSILENT PowerFactory.
 ------------------------------------------------
-This script automates load expansion studies in PowerFactory by:
+The workflow includes:
 - Importing a project file
 - Activating a study case and operation scenario
 - Creating a network variation and expansion stage
