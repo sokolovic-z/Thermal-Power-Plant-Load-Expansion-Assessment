@@ -154,11 +154,11 @@ def main(app):
         print(f'[*] {load.loc_name} ...')
         
         # Extract terminal info
-        cub = load.bus1 # returns cubicle object (e.g. "new_cub")
-        bus = cub.cterm # returns bus object e.g."1GA-L4 JN" or "1GA-L13 NN" or "1GA"
+        cub = load.bus1 # returns cubicle object 
+        bus = cub.cterm # returns bus object
 
         # Set active power P and power factor cosφ
-        load.mode_inp = 'PC' # set input model: (P, cosφ)
+        load.mode_inp = 'PC' # set input mode: (P, cosφ)
         load.SetAttribute('plini', 0)  # initial active power to 0
         # compute power factor cosφ equal to average power factor of the all ASM connected to the same substation/bus
         cosphi = np.mean(
