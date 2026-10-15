@@ -133,7 +133,7 @@ The script filters energized terminals with nominal voltages up to 6 kV and excl
 6. Run the script using a compatible Python interpreter:
 
    ```bash
-   python src/load_expansion.py
+   python src/max_loadability_assessment.py
    ```
 
 Execution may also require appropriate PowerFactory licensing, permissions, and a valid application session.
