@@ -1,15 +1,15 @@
-# Load Expansion Assessment of a Thermal Power Plant Auxiliary Electrical System Using DIgSILENT PowerFactory and Python
+#  Maximum Loadability Assessment of a Thermal Power Plant Auxiliary Electrical System Using DIgSILENT PowerFactory and Python
 
 ## Overview
 
-This project implements a Python-based workflow for conducting load expansion studies in **DIgSILENT PowerFactory**. The script automates the process of adding new loads to medium-voltage and low-voltage network buses, progressively increasing their active power, performing load flow calculations, and identifying network operating limit violations.
+This project implements a Python-based workflow for conducting maximum loadability assessment of a TPP aux electrical system using **DIgSILENT PowerFactory**. The script automates the process of adding new loads to medium-voltage and low-voltage network buses, progressively increasing their active power, performing load flow calculations, and identifying network operating limit violations.
 
 The objective is to determine the maximum additional active load that can be connected at selected network nodes while respecting voltage limits and equipment loading constraints.
 
 
 ## Methodology
 
-The analysis follows an incremental load expansion approach:
+The analysis follows an load incremental approach:
 
 1. Initialize the PowerFactory application and import project.
 2. Activate the relevant study case and operation scenario.
@@ -45,12 +45,12 @@ The active power increment can be adjusted to obtain a finer or coarser estimate
 ## Project Structure
 
 ```text
-Thermal-Power-Plant-Load-Expansion-Assessment/
+Thermal-Power-Plant-Maximum-Loadability-Assessment/
 ├── doc/
 │   ├── workflow.png
 │   └── sld.pdf
 ├── src/
-│   └── load_expansion.py
+│   └── max_loadability_assessment.py
 ├── .gitignore
 ├── requirements.txt
 └── README.md
@@ -114,8 +114,8 @@ The script filters energized terminals with nominal voltages up to 6 kV and excl
  1. Clone the repository and navigate to the project directory:
 
     ```bash
-    git clone https://github.com/sokolovic-z/Thermal-Power-Plant-Load-Expansion-Assessment.git 
-    cd Thermal-Power-Plant-Load-Expansion-Assessment
+    git clone https://github.com/sokolovic-z/Thermal-Power-Plant-Maximum-Loadability-Assessment.git 
+    cd Thermal-Power-Plant-Maximum-Loadability-Assessment
     ```
 
 2. Install the required Python packages:
