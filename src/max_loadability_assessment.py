@@ -97,7 +97,6 @@ def add_loads(app, grid, nodes, display=False):
         loads.append(new_load)
     
     # Display new elements in existing diagram (optional)
-    display = False
     if display:
         graphic = app.GetDesktop()
         graphic.Unfreeze()
